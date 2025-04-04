@@ -152,6 +152,19 @@ a:hover {
   cursor: auto;
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 a,
 button,
 input,
@@ -186,6 +199,7 @@ h1, h2, h3, h4, h5, h6 {
      -moz-column-gap: 20px;
           column-gap: 20px;
   padding-inline: 32px;
+  min-height: 90px;
 }
 .header .header-logo {
   -ms-flex-negative: 0;
@@ -242,7 +256,101 @@ h1, h2, h3, h4, h5, h6 {
           justify-content: center;
   background-color: transparent;
   border: 1px solid #ffffff;
-  border-radius: 30px;
+  border-radius: 50%;
+}
+
+.banner {
+  padding: 36px 70px;
+  min-height: calc(100vh - 90px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  color: #ffffff;
+}
+.banner .banner-body {
+  text-transform: uppercase;
+}
+.banner .banner-body .banner-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: end;
+  font-size: clamp(16px, 1.56vw, 30px);
+  line-height: 1.27;
+  font-weight: 700;
+}
+.banner .banner-body .banner-info::before {
+  content: "";
+  width: clamp(60px, 10.1vw, 194px);
+  aspect-ratio: 1;
+  background: url("/icons/bold-arrow-down-right.svg") center/contain no-repeat;
+  margin-right: 30px;
+}
+.banner .banner-body .banner-title {
+  font-size: min(18.75vw, 360px);
+  line-height: 1;
+}
+.banner .banner-pagination .banner-pagination-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-column-gap: 14px;
+     -moz-column-gap: 14px;
+          column-gap: 14px;
+}
+.banner .banner-pagination .banner-pagination-list .banner-pagination-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.banner .banner-pagination .banner-pagination-list .banner-pagination-item .banner-pagination-button {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: transparent;
+  border: none;
+  padding: 7px;
+}
+.banner .banner-pagination .banner-pagination-list .banner-pagination-item .banner-pagination-button::after {
+  content: "";
+  width: 10px;
+  aspect-ratio: 1;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+.banner .banner-pagination .banner-pagination-list .banner-pagination-item .banner-pagination-button.is-current {
+  background-color: transparent;
+}
+.banner .banner-pagination .banner-pagination-list .banner-pagination-item .banner-pagination-button.is-current::after {
+  content: "";
+  width: 10px;
+  aspect-ratio: 1;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  background-color: #ffffff;
+}
+.banner .banner-pagination .banner-pagination-list .banner-pagination-item .banner-pagination-button:not(.is-current):hover::after {
+  border-color: #C4C4C4;
 }
 
 @media (max-width: 1024px) {
@@ -259,6 +367,12 @@ h1, h2, h3, h4, h5, h6 {
             order: 1;
     -ms-flex-preferred-size: 100%;
         flex-basis: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .header .header-menu .header-menu-list {
     -ms-flex-wrap: wrap;
@@ -266,6 +380,9 @@ h1, h2, h3, h4, h5, h6 {
   }
   .header .header-menu .header-menu-list .header-menu-link {
     height: 50px;
+  }
+  .banner {
+    padding-inline: 15px;
   }
 }
 @media (max-width: 767px) {
@@ -284,6 +401,22 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-column-gap: 20px;
        -moz-column-gap: 20px;
             column-gap: 20px;
+  }
+  .banner {
+    row-gap: 10px;
+  }
+  .banner .banner-body {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    row-gap: 15px;
+  }
+  .banner .banner-body .banner-info::before {
+    margin-right: 10px;
   }
   .button {
     padding-inline: 14px;

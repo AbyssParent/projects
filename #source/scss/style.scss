@@ -89,6 +89,19 @@ a:hover{
     cursor: auto;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+
 
 //Добавляем всем интерактивным элементам плавную анимацию
 a,
@@ -122,6 +135,7 @@ h1, h2, h3, h4, h5, h6{
     align-items: center;
     column-gap: 20px;
     padding-inline: 32px;
+    min-height: 90px;
 
     & .header-logo{
         flex-shrink: 0;
@@ -167,8 +181,98 @@ h1, h2, h3, h4, h5, h6{
             justify-content: center;
             background-color: transparent;
             border: $border;
-            border-radius: $border-radius;
+            border-radius: 50%;
         }
+    }
+}
+
+
+.banner{
+    padding: 36px 70px;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    color: $color-light;
+
+    & .banner-body{
+        text-transform: uppercase;
+
+        .banner-info{
+            display: flex;
+            align-items: end;
+            font-size: clamp(16px, 1.56vw, 30px);
+            line-height: 1.27;
+            font-weight: 700;
+        }
+
+        .banner-info::before{
+            content: '';
+            width: clamp(60px ,10.1vw, 194px);
+            aspect-ratio: 1;
+            background: url('/icons/bold-arrow-down-right.svg') center/contain no-repeat;
+            margin-right: 30px;
+        }
+
+        .banner-title{
+            font-size: min(18.75vw, 360px);
+            line-height: 1;
+        }
+    }
+
+    & .banner-pagination{
+        
+
+        .banner-pagination-list{
+            display: flex;
+            justify-content: center;
+            column-gap: 14px;
+
+            .banner-pagination-item{
+                display: flex;
+                
+                
+                .banner-pagination-button{
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    background-color: transparent;
+                    border: none;
+                    padding: 7px;
+                }
+
+                .banner-pagination-button::after{
+                    content: '';
+                    width: 10px;
+                    aspect-ratio: 1;
+                    border: $border;
+                    border-radius: 50%;
+                    transition-duration: $transition-duration;
+
+                }
+
+                .banner-pagination-button.is-current{
+                    background-color: transparent;
+                }
+
+                .banner-pagination-button.is-current::after{
+                    content: '';
+                    width: 10px;
+                    aspect-ratio: 1;
+                    border: $border;
+                    border-radius: 50%;
+                    background-color: $color-light;
+
+                }
+
+                .banner-pagination-button:not(.is-current):hover::after{
+                    border-color: $color-light-gray;
+                }
+
+            }
+        }
+                
+        
     }
 }
 
@@ -183,6 +287,8 @@ h1, h2, h3, h4, h5, h6{
         & .header-menu{
             order: 1;
             flex-basis: 100%;
+            display: flex;
+            justify-content: center;
 
             & .header-menu-list{
                 flex-wrap: wrap;
@@ -191,10 +297,11 @@ h1, h2, h3, h4, h5, h6{
                 }                
             }
         }
-
-       
     }
-    
+
+    .banner{
+        padding-inline: 15px;
+    }
 }
 
 @media(max-width:767px){
@@ -218,12 +325,28 @@ h1, h2, h3, h4, h5, h6{
 
     }
 
+    .banner{
+        row-gap: 10px;
+
+        & .banner-body{
+            display: flex;
+            flex-direction: column;
+            row-gap: 15px;
+            .banner-info::before{
+                margin-right: 10px;
+            }
+        }
+        
+    }
+
     .button{
         padding-inline: 14px;
         font-size: 14px;
 
     }
 }
+
+
 
 
 
